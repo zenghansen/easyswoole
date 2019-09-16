@@ -29,7 +29,7 @@ return [
     'LOG_DIR' => null,
     'MYSQL'  => [
         'host'          => 'mysql',
-        'port'          => 3300,
+        'port'          => 3306,
         'user'          => 'root',
         'password'      => 'mtjo',
         'database'      => 'test',

@@ -12,16 +12,14 @@
         }
     ],
     "require-dev": {
-        "easyswoole/swoole-ide-helper": "^1.2",
-        "easyswoole/phpunit": "^1.0"
+        "easyswoole/swoole-ide-helper": "^1.2"
     },
     "autoload": {
         "psr-4": {
-            "EasySwoole\\Mysqli\\": "src/",
-            "EasySwoole\\Mysqli\\Tests\\": "tests/"
+            "EasySwoole\\Mysqli\\": "src/"
         }
     },
     "require": {
-        "easyswoole/spl": "^1.2"
+        "easyswoole/spl": "^1.0"
     }
 }

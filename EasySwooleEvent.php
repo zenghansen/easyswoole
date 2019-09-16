@@ -9,6 +9,7 @@
 namespace EasySwoole\EasySwoole;
 
 
+use App\Process\HotReload;
 use EasySwoole\EasySwoole\Swoole\EventRegister;
 use EasySwoole\EasySwoole\AbstractInterface\Event;
 use EasySwoole\Http\Request;
@@ -21,11 +22,17 @@ class EasySwooleEvent implements Event
     {
         // TODO: Implement initialize() method.
         date_default_timezone_set('Asia/Shanghai');
+        $configData = Config::getInstance()->getConf('MYSQL');
+        $config = new \EasySwoole\Mysqli\Config($configData);
+        $poolConf = \EasySwoole\MysqliPool\Mysql::getInstance()->register('mysql', $config);
+        $poolConf->setMaxObjectNum(20);
     }
 
     public static function mainServerCreate(EventRegister $register)
     {
         // TODO: Implement mainServerCreate() method.
+        $swooleServer = ServerManager::getInstance()->getSwooleServer();
+        $swooleServer->addProcess((new HotReload('HotReload', ['disableInotify' => false]))->getProcess());
     }
 
     public static function onRequest(Request $request, Response $response): bool
